@@ -9,6 +9,15 @@ import { ActivatedRoute} from "@angular/router";
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  /*
+    This class handles the homepage including the running total
+    and initialising new expenses.
+    Params:
+      Nil
+    Returns:
+      Nil
+  */
+  // Initialise variables
   public allExpenses = [];
   public amountArray = [];
   public countArray = [];
@@ -25,11 +34,27 @@ export class HomePage {
     }
 
   public async newExpense() {
+    /*
+      Start the new expense process.Initialise a new expense object and
+      clear image buffer variables.
+      Params:
+        Nil
+      Returns:
+        Nil
+    */
     await this.storageService.newExpense();
     this.photoService.clearImages();
   }
 
   public async showExpenseTotals(){
+    /*
+      Calculate the totals for each currency.
+      Params:
+        Nil
+      Returns:
+        Nil
+    */
+    // Initialise variables.
     this.amountArray = [];
     this.countArray = [];
     let poundTotal:number = 0;
@@ -41,6 +66,8 @@ export class HomePage {
     let euroTotal:number = 0;
     let euroTotalString = "";
     let euroCount:number = 0;
+
+    // Get array of all expense 
     await this.storageService.getAllExpenses().then( val => {
       this.allExpenses = val;
     });
