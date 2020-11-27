@@ -33,9 +33,46 @@ export class ViewReceiptPage implements OnInit {
       Returns:
         Nil
 	  */
+    // Initialise variables
+    var receiptObject = {};
+
     this.expenseObject = await this.storageService.getExpense(this.receiptIndexTitle);
     this.receiptImage = this.expenseObject['savedImage'];
+    // Generate timestamp string.
+    receiptObject = JSON.parse(this.receiptImage) || [];
+    this.receiptTimestamp = this.generateTimestamp(receiptObject[0]['time']);
+    // Load image
     await this.photoService.loadSaved(this.receiptIndexTitle);
+  }
+
+  private generateTimestamp(savedTimestamp:number){
+    /*
+      Generate a string showing the receipt photo timestamp.
+      Params:
+        savedTimestamp (Number): Unix epoch number
+      Returns:
+        timestamp (String): An easily readable time format (HH:MM on DD MMM YYYY)
+	  */
+   // Initialise variables.
+    let epochTime = new Date(savedTimestamp);
+    let months = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    let day:number = epochTime.getDate()
+    let month:number = epochTime.getMonth()
+    let year:number = epochTime.getFullYear()
+    let hours:number = epochTime.getHours()
+    let minutes:number = epochTime.getMinutes()
+    let timestamp:string = "";
+
+    // Check if a timestamp has been saved with the photo
+    if (savedTimestamp !== undefined) {
+      timestamp = hours + ":" + minutes + " on " + day + " " + months[month] + " " + year;
+    } else {
+      timestamp = "No time stored";
+    }
+    return timestamp
   }
 
   ngOnInit() {
