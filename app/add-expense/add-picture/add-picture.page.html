@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Receipt Photo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let receipt of photoService.storedReceipts">
+    <ion-card-content>
+      <ion-img [src]="receipt.webviewPath"></ion-img>
+    </ion-card-content>
+  </ion-card>
+  <ion-item>
+    <ion-button [routerLink]="['']">Cancel</ion-button>
+    <ion-button (click)="addReceipt()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-button>
+    <ion-button [routerLink]="['/add-expense/add-amount']">Next</ion-button>
+  </ion-item>
+</ion-content>

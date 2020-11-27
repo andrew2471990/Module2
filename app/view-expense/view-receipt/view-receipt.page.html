@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Receipt Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let receipt of photoService.storedReceipts">
+    <ion-card-content>
+      <ion-img [src]="receipt.webviewPath"></ion-img>
+    </ion-card-content>
+  </ion-card>
+  <ion-item>
+    <ion-button [routerLink]="['/view-expense/view-expense', receiptIndexTitle]">Back</ion-button>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Review Expense Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let receipt of photoService.storedReceipts">
+    <ion-card-content>
+      <ion-img [src]="receipt.webviewPath"></ion-img>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input [disabled]=true  #amount inputmode="decimal" [(ngModel)]="entry" value={{expenseAmount}}></ion-input>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button [routerLink]="['../../add-amount']">Edit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-input>
+            <ion-datetime [disabled]=true #date displayFormat="DD MMM YY" value={{expenseDate}}></ion-datetime>
+          </ion-input>
+        </ion-col>
+        <ion-col class="ion-text-end">
+            <ion-button [routerLink]="['../../add-date']">Edit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-textarea [disabled]=true #info value={{expenseInfo}}></ion-textarea>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button [routerLink]="['../../add-info']">Edit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-item>
+    <ion-button [routerLink]="['../../add-info']">Previous</ion-button>
+    <ion-button [disabled]="confirmed" (click)="submitExpense()" [routerLink]="['../../review']">Submit</ion-button>
+  </ion-item>
+</ion-content>

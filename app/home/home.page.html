@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Expenses Logging App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Expenses Logging App</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-item><b>Running Totals:</b></ion-item>
+  <ion-card *ngFor="let runningTotal of amountArray; index as position">
+    <ion-card-content>
+      {{runningTotal}} <i>({{countArray[position]}} expense entries)</i>
+    </ion-card-content>
+  </ion-card>
+<ion-item>
+    <ion-button (click)="newExpense()" [routerLink]="['/add-expense/add-picture']">Add Expense</ion-button>
+    <ion-button [routerLink]="['/view-expense/list']">View Expenses</ion-button> 
+  </ion-item>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Amount</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Expense Amount: </ion-label>
+    <ion-select [disabled]="confirmed" #currency value={{currencyAmount}}>
+      <ion-select-option value="£">£</ion-select-option>
+      <ion-select-option value="$">$</ion-select-option>
+      <ion-select-option value="€">€</ion-select-option>
+    </ion-select>
+    <ion-input [disabled]="confirmed"  #amount autofocus="true" placeholder="0.00" value="{{expenseAmount}}" inputmode="decimal" [(ngModel)]="entry"></ion-input>
+    <ion-button [disabled]="!confirmed" (click)="editAmount()">Edit</ion-button>
+    <ion-button [disabled]="confirmed" (click)="confirmAmount(currency.value, amount.value)">Confirm</ion-button>
+  </ion-item>
+  <!--<ion-item *ngIf="confirmed" >
+    Expense value: {{currencyAmount}}{{expenseAmount}}.
+  </ion-item>-->
+  <ion-item *ngIf="amountError" >
+    Invalid number format. Select a currency, and then enter a value in the form "0.00".
+  </ion-item>
+  <p><ion-button [routerLink]="['../../add-picture']">Previous</ion-button>
+  <ion-button [disabled]="!confirmed" (click)="submitAmount()" [routerLink]="['../../add-date']">Next</ion-button></p>
+</ion-content>

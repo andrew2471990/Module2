@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Additional Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <p><i>Add any further additional information to expense claim: </i></p>
+  </ion-item>
+  <ion-item>
+    <ion-textarea [disabled]="confirmed" #info value="{{expenseInfo}}" placeholder="Enter more info if required..."></ion-textarea>
+    <ion-button [disabled]="!confirmed" (click)="editInfo()">Edit</ion-button>
+    <ion-button [disabled]="confirmed" (click)="confirmInfo(info.value)">Confirm</ion-button>
+  </ion-item>
+  <!--<ion-item *ngIf="confirmed" >
+    Additional Info: {{expenseInfo}}.
+  </ion-item>-->
+  <ion-item *ngIf="infoError" >
+    Invalid data.
+  </ion-item>
+  <p><ion-button [routerLink]="['../../add-date']">Previous</ion-button>
+  <ion-button [disabled]="!confirmed" (click)="submitInfo()">Next</ion-button></p>
+</ion-content>

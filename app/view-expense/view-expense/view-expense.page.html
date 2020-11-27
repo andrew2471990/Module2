@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Viewing Expense <i>(ID: {{receiptIndexTitle}})</i></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-input [disabled]=true  #amount inputmode="decimal" [(ngModel)]="entry" value={{expenseAmount}}></ion-input>
+  </ion-card>
+  <ion-card>
+    <ion-input><ion-datetime [disabled]=true #date displayFormat="DD MMM YY" value={{expenseDate}}></ion-datetime></ion-input>
+  </ion-card>
+  <ion-card>
+    <ion-textarea [disabled]=true #info value={{expenseInfo}}></ion-textarea>
+  </ion-card>
+  <ion-item>
+    <ion-button [routerLink]="['/view-expense/list']">Back</ion-button>
+    <ion-button [routerLink]="['/view-expense/view-receipt/', receiptIndexTitle]">
+      <ion-icon name="camera"></ion-icon>View Receipt Image
+    </ion-button>
+    <ion-button [disabled]="confirmed" (click)="editExpense()" [routerLink]="['/add-expense/review']">Edit</ion-button>
+    <ion-button [disabled]="confirmed" (click)="confirmDelete()">Delete</ion-button>
+  </ion-item>
+</ion-content>

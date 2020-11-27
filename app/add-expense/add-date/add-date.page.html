@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Expense Date</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Expense Date: </ion-label>
+    <ion-input><ion-datetime [disabled]="confirmed" #date value="{{expenseDate}}" displayFormat="DD MMM YY" placeholder="Select Date"></ion-datetime></ion-input>
+    <ion-button [disabled]="!confirmed" (click)="editDate()">Edit</ion-button>
+    <ion-button [disabled]="confirmed" (click)="confirmDate(date.value)">Confirm</ion-button>
+  </ion-item>
+  <!--<ion-item *ngIf="confirmed" >
+    Expense date: {{expenseDate}}.
+  </ion-item>-->
+  <ion-item *ngIf="dateError" >
+    Invalid date format. Please select from dropdown list.
+  </ion-item>
+  <p><ion-button [routerLink]="['../../add-amount']">Previous</ion-button>
+  <ion-button [disabled]="!confirmed" (click)="submitDate()" [routerLink]="['../../add-info']">Next</ion-button></p>
+</ion-content>

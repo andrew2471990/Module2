@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Expenses</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-sliding *ngFor="let expense of allExpenses">
+    <div >
+      <ion-item [routerLink]="['/view-expense/view-expense/', expense.receipt]">
+        <ion-label><ion-datetime class="dateDisplay" displayFormat="DD MMM YY" disabled=true value="{{expense.date}}"></ion-datetime> <i>({{expense.info}} | {{expense.currency}}{{expense.amount}})</i></ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="editExpense(expense.receipt)" [routerLink]="['/add-expense/review']">Edit</ion-item-option>
+        <ion-item-option (click)="confirmDelete(expense.receipt)" [routerLink]="['./']">Delete</ion-item-option>
+      </ion-item-options>
+    </div>
+  </ion-item-sliding>
+  <ion-item>
+    <ion-button [routerLink]="['/']">Main Menu</ion-button>
+  </ion-item>
+  
+</ion-content>
