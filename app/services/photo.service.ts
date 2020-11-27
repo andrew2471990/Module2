@@ -67,12 +67,14 @@ export class PhotoService {
       return {
         filepath: savedFile.uri,
         webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+        time: new Date().getTime()
       };
     } else {
       // If platform is web-based, must use <img> src friendly path
       return {
         filepath: fileName,
-        webviewPath: cameraPhoto.webPath
+        webviewPath: cameraPhoto.webPath,
+        time: new Date().getTime()
       };
     }
   }
@@ -99,7 +101,7 @@ export class PhotoService {
     const savedReceipt = await this.savePicture(capturedPhoto);
     // Reverse contents of receipt picture array
     this.storedReceipts.unshift(savedReceipt);
-
+    console.log(this.storedReceipts);
     // Convert object to string format
     savedImage = JSON.stringify(this.storedReceipts)
     // Save details using storageService
