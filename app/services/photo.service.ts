@@ -111,7 +111,7 @@ export class PhotoService {
   public async loadSaved(optionalIndex?:string) {
     /*
       Load receipt picture. By default will take the last taken photo as the
-      in use Receipt ID unless optionalIndex is passed.
+      in use Receipt ID unless optionalIndex is passed. Basis for function from Ionic documentation.
       Params:
         optionalIndex (String): Optional. Used for viewing/modifying existing expenses.
       Returns:
